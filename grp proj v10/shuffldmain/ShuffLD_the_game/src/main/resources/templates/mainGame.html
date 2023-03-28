@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en" th="http://www.thymeleaf.org/">
+
+</html>
+<head>
+
+  <script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
+    <div class="chatbot">
+      <df-messenger
+        intent="WELCOME"
+        chat-title="Kelvin"
+        agent-id="2889f0bb-5cf0-4c7b-8b73-1319e18fc6b1"
+        language-code="en"
+      ></df-messenger>
+    </div>
+  </div>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShuffLD</title>
+
+    <link rel="stylesheet" th:href="@{/style.css}">
+    
+</head>
+
+
+
+
+
+
+
+
+
+
+<body>
+    <h1>shuffLD</h1>
+
+  
+    <h2 id="time" style="font-size: 80px; font-weight: strong; position: absolute; top: 0;font-family: monospace; 
+    left: 0;  color: #ff00d4;
+    text-shadow: 0 0 15px #c717a1, 0 0 10px #bd22a8, 0 0 5px #e430a8;
+      text-transform: uppercase;
+      letter-spacing: 2px;"></h2>
+
+
+
+<form id="login-form">
+  <label for="username">Username:</label>
+  <input type="text" id="username" name="username" oninput="Limitation_input(event)">
+  <br>
+  <label for="password">Password:</label>
+  <input type="password" id="password" name="password" oninput="Limitation_input(event)">
+  <br>
+  <br>
+  <button type="submit">Login</button>
+
+  <input type="button" id="register" value="Register" onclick="showRegisterForm()">
+</form>
+
+
+
+
+
+
+
+
+
+    <div class="moves">
+      <div id="movesLeft">Moves Left</div>
+    </div>
+    <div id="menu">
+        <div class="toggle" onclick="show()">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+ 
+        <div class="search-content" style="display:none">
+          <button class="close-btn" onclick="toggleSearch()">X</button>
+
+
+          <h2 style="font-family: 'Open Sans', sans-serif; /* use Open Sans font family */
+          font-size: 30px;
+          font-weight: bold;
+          text-shadow: 2px 2px 5px grey; 
+          color: #0fe2e6; ">Dictionary</h2>
+
+          <input type="text" id="word" />
+          <button onclick="search()">Search</button>
+          <div id="output"></div>
+        </div>
+
+ <!-- how to play class id -->
+ <div id="Pop-up1" class="pop">
+  <!-- how to play contents -->
+  <div class="pop-content">
+    <div class="pop-header">
+      <span class="close">&times;</span>
+      <h2 style="font-family: 'Open Sans', sans-serif; /* use Open Sans font family */
+      font-size: 48px;
+      font-weight: bold;
+      text-shadow: 2px 2px 5px grey; 
+      color: #e6db0f; ">How To Play</h2>
+    </div>
+    <div class="pop-body">
+
+      <p >Solve the 5 words that are scrambled in less than 20 moves.</p>
+      <p>Letters in it's corresponding column can only move up and down its own column.</p>
+      <p >Select a letter and the letter you want to switch it with and it will make a move.</p>
+      <p> Correctly positioned letters will highlight in pink. Else will remain white.</p>
+       <p>The move count will decrement by one each move.</p>
+
+    </div>
+
+
+
+  </div>
+
+</div>
+
+
+
+
+   <!-- statics contents -->
+   <div class="statics-content " style="display:none">
+    <button class="close-btn" onclick="show_statics_content()">X</button>
+    <h2 style="font-family: 'Open Sans', sans-serif;
+        font-size: 40px;
+        font-weight: bold;
+        text-shadow: 2px 2px 5px grey;
+        color: #1de60f;">Statistics</h2>
+     <p>Word guessed: <span id="displayWordGuessed">0</span></p>
+     <p>Wins: <span id="displayWin">0</span></p>
+     <p>Moves made: <span id="dsiplayPlayed">0</span></p>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ <!-- how to play class id -->
+ <div id="end-up1" class="end"  onload="remain_Time()">
+ 
+
+
+  <!-- how to play contents -->
+  <div class="end-content">
+   
+    <h2 id="times" style="font-size: 60px; font-weight: strong; position: absolute; top: 0;
+    right: 0;  color: #ffffff;
+      text-shadow: 2px 2px 5px grey;
+      text-transform: uppercase;
+      font-size: 40px;
+      letter-spacing: 2px;"></h2>
+<br><br>
+  
+       <div id="solvedboard"></div>
+       <p> The DigGR took <span id="SwapCount"> </span> swaps to solve the grid</p>
+       <p>Better luck next time &#x1F608;</p>
+    
+ 
+
+
+  </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+<ul>
+ 
+ <li id="open-id">How to play</li>
+ <li  id="open-id2" onclick="show_statics_content()">Statistics</li>
+
+ <li id="open-id3" onclick="toggleSearch()">Dictionary</li>
+
+
+</ul> 
+
+    </div>
+
+
+
+  </div>
+  
+
+
+
+</div>
+
+<div class = "winbox end" id="win" >
+  <h2 id="timeRemaining" 
+  style="font-size: 24px; 
+  font-weight: bold;
+  color: #ffffff;
+  text-shadow: 2px 2px 5px rgb(0, 0, 0);
+  text-transform: uppercase;
+  font-size: 40px;
+  letter-spacing: 2px;"></h2>
+    <p> The DigGR took <span id="SwapCount2"> </span> swaps to solve the grid</p>
+    <p>Congratulations! Come back for the next puzzle!</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <div id="board"></div>
+    
+   
+</body>
+</html>
